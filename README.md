@@ -36,7 +36,7 @@
 
 | 🏠 Dashboard | 🔐 Vault | ⚡ Generator |
 |:-:|:-:|:-:|
-| ![Dashboard](https://via.placeholder.com/320x200/060410/8B5CF6?text=Dashboard) | ![Vault](https://via.placeholder.com/320x200/060410/8B5CF6?text=Vault) | ![Generator](https://via.placeholder.com/320x200/060410/8B5CF6?text=Generator) |
+| ![Dashboard](1490661116823470150) | ![Vault](https://via.placeholder.com/320x200/060410/8B5CF6?text=Vault) | ![Generator](https://via.placeholder.com/320x200/060410/8B5CF6?text=Generator) |
 
 | 🗒️ Secure Notes | 📊 Reports | 🎮 Vault Rank |
 |:-:|:-:|:-:|
