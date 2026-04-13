@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://i.imgur.com/YOUR_LOGO.png" alt="FluxKey" width="120" height="120"/>
+<img src="https://https://imgur.com/a/2bhagVR" alt="FluxKey" width="120" height="120"/>
 
 # ⚡ FluxKey — Cyber Vault
 
@@ -24,7 +24,7 @@
 
 ---
 
-### 🚀 [Download FluxKey Free](https://github.com/YOUR_USERNAME/fluxkey/releases/latest) — Windows EXE, no install needed
+### 🚀 [Download FluxKey Free](https://github.com/fluxtool/fluxkey/releases/latest) — Windows EXE, no install needed
 
 ---
 
