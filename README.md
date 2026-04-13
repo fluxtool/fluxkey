@@ -235,33 +235,13 @@ See [Releases](https://github.com/fluxtool/fluxkey/releases) for full history.
 
 The fastest way to get help is Discord — we reply fast.
 
-[![Discord Server](https://img.shields.io/discord/1490661116823470150?style=for-the-badge&logo=discord&logoColor=white&label=Join+Discord&color=5865F2)](https://discord.gg/Nxj2upuyj8)
+[![Discord](https://img.shields.io/badge/Discord-Join_Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/Nxj2upuyj8)
 
 - 💬 **[Discord](https://discord.gg/Nxj2upuyj8)** — general chat, support, PLUS codes
 - 🐛 **[Issues](https://github.com/fluxtool/fluxkey/issues)** — bug reports and feature requests
 - ⭐ **[Releases](https://github.com/fluxtool/fluxkey/releases)** — all versions and downloads
 
 <br/>
-
----
-
-## 🛠️ Run From Source
-
-FluxKey is built with **Python 3.11 + PySide6**. If you want to run the source:
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/fluxtool/fluxkey.git
-cd fluxkey
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Run
-python main.py
-```
-
-**Dependencies:** PySide6, cryptography, and Python standard library only. No heavyweight frameworks.
 
 ---
 
