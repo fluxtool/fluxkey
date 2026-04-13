@@ -209,7 +209,7 @@ Join the [Discord](https://discord.gg/Nxj2upuyj8) to get a code.
 
 ## 📋 Changelog
 
-### v9 — Current Release
+### v1.0.1 — Current Release
 - ✦ FluxKey PLUS system — one-time code activation (`FLUX-XXXX-XXXX-XXXX-XXXX` format), unlocks instantly without restart
 - 📌 Vault group pinning — pin important vaults to the top of the list
 - ↕️ Entry reorder — ▲▼ buttons per entry for full manual ordering
