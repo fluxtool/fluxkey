@@ -38,9 +38,9 @@
 |:-:|:-:|:-:|
 | ![Dashboard](preview/preview1.png) | ![Vault](preview/preview2.png) | ![Generator](preview/preview3.png) |
 
-| 🗒️ Secure Notes | 📊 Reports | 🎮 Vault Rank |
+| 🗒️ Profile Switch | 📊 Reports | 🛡️ Audit Log |
 |:-:|:-:|:-:|
-| ![Notes](https://via.placeholder.com/320x200/060410/8B5CF6?text=Notes+PLUS) | ![Reports](https://via.placeholder.com/320x200/060410/8B5CF6?text=Reports) | ![Rank](https://via.placeholder.com/320x200/060410/8B5CF6?text=Vault+Rank) |
+| ![ProfileSwitch](https://via.placeholder.com/320x200/060410/8B5CF6?text=Notes+PLUS) | ![Reports](https://via.placeholder.com/320x200/060410/8B5CF6?text=Reports) | ![AuditLog](https://via.placeholder.com/320x200/060410/8B5CF6?text=Vault+Rank) |
 
 <br/>
 
