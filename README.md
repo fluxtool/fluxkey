@@ -54,16 +54,11 @@
 
 ### Option 1 — Installer (Recommended)
 
-1. Click **[Releases](https://github.com/YOUR_USERNAME/fluxkey/releases/latest)**
-2. Download `FluxKey_v9_Setup.exe`
+1. Click **[Releases](https://github.com/fluxtool/fluxkey/releases/latest)**
+2. Download `FluxKey_Installer.exe`
 3. Run it. Done.
 
 FluxKey runs entirely on your device. Nothing is sent anywhere.
-
-### Option 2 — Portable (No Install)
-
-Download `FluxKey_v9_Portable.zip`, extract anywhere, and run `FluxKey.exe`.
-Your vault file is stored in the same folder — easy to back up.
 
 ### System Requirements
 
@@ -97,7 +92,7 @@ On top of security, FluxKey is designed to be genuinely beautiful. The dark purp
 | Feature | What It Does |
 |---|---|
 | **AES-256 Encryption** | Military-grade encryption on every vault entry before it touches disk |
-| **Password Generator** | Generate passwords up to 999 characters — with uppercase, lowercase, numbers, symbols, keyphrase mode, no ambiguous characters, and no repeats |
+| **Password Generator** | Generate passwords up to 145 characters — with uppercase, lowercase, numbers, symbols, keyphrase mode, no ambiguous characters, and no repeats |
 | **Animated Strength Meter** | Real-time 5-segment strength indicator from Weak to Unbreakable |
 | **Vault Groups** | Organise passwords into named vaults with custom emoji icons and descriptions |
 | **Pin Vaults** | Pin your most-used vaults to the top so they're always first |
@@ -192,20 +187,20 @@ Your current level, rank badge, XP bar, and XP-to-next-level are displayed live 
 
 | | 🆓 Free | ✦ PLUS |
 |---|:-:|:-:|
-| AES-256 Password Vault | ✅ | ✅ |
-| Password Generator (up to 999 chars) | ✅ | ✅ |
-| Vault Groups | 2 max | ♾️ Unlimited |
+| AES-256 Password Vault | ✅ | ☑️ |
+| Password Generator (up to 145 chars) | ✅ | ☑️ |
+| Vault Groups | ✅ | ☑️ |
 | Local Profiles | 2 | 10 |
-| Pin & Reorder Vault Entries | ✅ | ✅ |
-| Password History Carousel | ✅ | ✅ |
-| Import / Export | ✅ | ✅ |
-| Vault Scan (tamper detection) | ✅ | ✅ |
-| Auto-lock & Auto-clear Clipboard | ✅ | ✅ |
-| Security Dashboard | ✅ | ✅ |
-| Vault Rank / XP System | ✅ | ✅ |
-| Animated UI & Purple Border Glow | ✅ | ✅ |
-| **Secure Notes** | ❌ | ✅ |
-| **Full Audit Log** | ❌ | ✅ |
+| Pin & Reorder Vault Entries | ✅ | ☑️ |
+| Password History Carousel | ✅ | ☑️ |
+| Import / Export | ✅ | ☑️ |
+| Vault Scan (tamper detection) | ✅ | ☑️ |
+| Auto-lock & Auto-clear Clipboard | ✅ | ☑️ |
+| Security Dashboard | ✅ | ☑️ |
+| Vault Rank / XP System | ✅ | ☑️ |
+| Animated UI & Purple Border Glow | ✅ | ☑️ |
+| **Secure Notes** | ❌ | ☑️ |
+| **Full Audit Log** | ❌ | ☑️ |
 
 **PLUS is activated with a one-time code — no subscription, no payment form.**
 Join the [Discord](https://discord.gg/Nxj2upuyj8) to get a code.
@@ -230,7 +225,7 @@ Join the [Discord](https://discord.gg/Nxj2upuyj8) to get a code.
 - 🐛 Fixed: `NameError: name 'b' is not defined` on startup
 
 ### v8 and earlier
-See [Releases](https://github.com/YOUR_USERNAME/fluxkey/releases) for full history.
+See [Releases](https://github.com/fluxtool/fluxkey/releases) for full history.
 
 <br/>
 
@@ -242,11 +237,11 @@ See [Releases](https://github.com/YOUR_USERNAME/fluxkey/releases) for full histo
 
 The fastest way to get help is Discord — we reply fast.
 
-[![Discord Server](https://img.shields.io/discord/YOUR_SERVER_ID?style=for-the-badge&logo=discord&logoColor=white&label=Join+Discord&color=5865F2)](https://discord.gg/Nxj2upuyj8)
+[![Discord Server](https://img.shields.io/discord/1490661116823470150?style=for-the-badge&logo=discord&logoColor=white&label=Join+Discord&color=5865F2)](https://discord.gg/Nxj2upuyj8)
 
 - 💬 **[Discord](https://discord.gg/Nxj2upuyj8)** — general chat, support, PLUS codes
-- 🐛 **[Issues](https://github.com/YOUR_USERNAME/fluxkey/issues)** — bug reports and feature requests
-- ⭐ **[Releases](https://github.com/YOUR_USERNAME/fluxkey/releases)** — all versions and downloads
+- 🐛 **[Issues](https://github.com/fluxtool/fluxkey/issues)** — bug reports and feature requests
+- ⭐ **[Releases](https://github.com/fluxtool/fluxkey/releases)** — all versions and downloads
 
 <br/>
 
@@ -254,11 +249,11 @@ The fastest way to get help is Discord — we reply fast.
 
 ## 🛠️ Run From Source
 
-FluxKey is built with **Python 3.11 + PySide6**. If you want to run or modify the source:
+FluxKey is built with **Python 3.11 + PySide6**. If you want to run the source:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/fluxkey.git
+git clone https://github.com/fluxtool/fluxkey.git
 cd fluxkey
 
 # 2. Install dependencies
@@ -269,16 +264,6 @@ python main.py
 ```
 
 **Dependencies:** PySide6, cryptography, and Python standard library only. No heavyweight frameworks.
-
-**Building the EXE yourself:**
-
-```bash
-pip install pyinstaller
-pyinstaller FluxKey.spec
-# Output: dist/FluxKey.exe
-```
-
-<br/>
 
 ---
 
@@ -299,7 +284,7 @@ Every star genuinely helps. Thank you. 🙏
 
 ## 📈 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=YOUR_USERNAME/fluxkey&type=Date)](https://star-history.com/#YOUR_USERNAME/fluxkey&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=fluxtool/fluxkey&type=Date)](https://star-history.com/#fluxtool/fluxkey&Date)
 
 <br/>
 
@@ -313,8 +298,8 @@ Every star genuinely helps. Thank you. 🙏
 
 <br/>
 
-[![Download](https://img.shields.io/badge/⬇_Download_FluxKey-Free-8B5CF6?style=for-the-badge)](https://github.com/YOUR_USERNAME/fluxkey/releases/latest)
+[![Download](https://img.shields.io/badge/⬇_Download_FluxKey-Free-8B5CF6?style=for-the-badge)](https://github.com/fluxtool/fluxkey/releases/latest)
 [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/Nxj2upuyj8)
-[![Stars](https://img.shields.io/github/stars/YOUR_USERNAME/fluxkey?style=for-the-badge&color=f59e0b)](https://github.com/YOUR_USERNAME/fluxkey/stargazers)
+[![Stars](https://img.shields.io/github/stars/fluxtool/fluxkey?style=for-the-badge&color=f59e0b)](https://github.com/fluxtool/fluxkey/stargazers)
 
 </div>
