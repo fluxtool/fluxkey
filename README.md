@@ -11,9 +11,9 @@
 
 [![Download](https://img.shields.io/badge/⬇_Download-Latest_Release-8B5CF6?style=for-the-badge)](https://github.com/YOUR_USERNAME/fluxkey/releases/latest)
 [![Platform](https://img.shields.io/badge/Platform-Windows_10_|_11-0078D4?style=for-the-badge&logo=windows)](https://github.com/YOUR_USERNAME/fluxkey/releases)
-[![Version](https://img.shields.io/badge/Version-v9-22c55e?style=for-the-badge)](https://github.com/YOUR_USERNAME/fluxkey/releases)
+[![Version](https://img.shields.io/badge/Version-v1.0.1-22c55e?style=for-the-badge)](https://github.com/fluxtool/fluxkey/releases)
 [![Discord](https://img.shields.io/badge/Discord-Join_Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/Nxj2upuyj8)
-[![Stars](https://img.shields.io/github/stars/YOUR_USERNAME/fluxkey?style=for-the-badge&color=f59e0b&logo=github)](https://github.com/YOUR_USERNAME/fluxkey/stargazers)
+[![Stars](https://img.shields.io/github/stars/fluxtool/fluxkey?style=for-the-badge&color=f59e0b&logo=github)](https://github.com/fluxtool/fluxkey/stargazers)
 
 <br/>
 
