@@ -40,7 +40,7 @@
 
 | 🗒️ Profile Switch | 📊 Reports | 🛡️ Audit Log |
 |:-:|:-:|:-:|
-| ![ProfileSwitch](https://via.placeholder.com/320x200/060410/8B5CF6?text=Notes+PLUS) | ![Reports](https://via.placeholder.com/320x200/060410/8B5CF6?text=Reports) | ![AuditLog](https://via.placeholder.com/320x200/060410/8B5CF6?text=Vault+Rank) |
+| ![ProfileSwitch](preview/preview4.png) | ![Reports](preview/preview5.png) | ![AuditLog](preview/preview6.png) |
 
 <br/>
 
