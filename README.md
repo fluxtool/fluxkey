@@ -36,7 +36,7 @@
 
 | 🏠 Dashboard | 🔐 Vault | ⚡ Generator |
 |:-:|:-:|:-:|
-| ![Dashboard](preview/preview1.png) | ![Vault](preview/preview2.png) | ![Generator](preview/preview3.png/320x200/060410/8B5CF6?text=Generator) |
+| ![Dashboard](preview/preview1.png) | ![Vault](preview/preview2.png) | ![Generator](preview/preview3.png) |
 
 | 🗒️ Secure Notes | 📊 Reports | 🎮 Vault Rank |
 |:-:|:-:|:-:|
