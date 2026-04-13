@@ -94,7 +94,6 @@ On top of security, FluxKey is designed to be genuinely beautiful. The dark purp
 | **Animated Strength Meter** | Real-time 5-segment strength indicator from Weak to Unbreakable |
 | **Vault Groups** | Organise passwords into named vaults with custom emoji icons and descriptions |
 | **Pin Vaults** | Pin your most-used vaults to the top so they're always first |
-| **Reorder Entries** | Drag entries up and down within any vault using ▲▼ buttons |
 | **Full-Text Search** | Instantly search across all sites and usernames |
 | **Action Tray** | Per-entry tray with: View, Copy Username, Copy Password, Edit, Move, Delete |
 | **Password History** | Carousel of recently generated passwords — reuse any of them instantly |
@@ -115,8 +114,8 @@ PLUS is a one-time upgrade activated with a `FLUX-XXXX-XXXX-XXXX-XXXX` code — 
 |---|---|
 | **Secure Notes** | Encrypted notes with a sidebar list and full text editor — completely separate from your vault |
 | **Audit Log** | Full searchable history of every action: logins, vault saves, edits, deletes, note changes |
-| **Unlimited Vaults** | No cap on vault groups — free tier is limited to 2 |
-| **10 Profiles** | Up to 10 local user profiles — great for shared PCs or testing |
+| **Unlimited Vaults** | No cap on vault groups — free tier included |
+| **10 Profiles** | Up to 10 local user profiles — free tier only having 2, great for shared PCs or testing |
 
 > 💬 **Get a PLUS code — [join the Discord](https://discord.gg/Nxj2upuyj8)**
 
@@ -201,7 +200,7 @@ Your current level, rank badge, XP bar, and XP-to-next-level are displayed live 
 | **Full Audit Log** | ❌ | ☑️ |
 
 **PLUS is activated with a one-time code — no subscription, no payment form.**
-Join the [Discord](https://discord.gg/Nxj2upuyj8) to get a code.
+Join the [Discord](https://discord.gg/Nxj2upuyj8) to get a code // $20 AUD One-Time Payment.
 
 <br/>
 
@@ -212,7 +211,6 @@ Join the [Discord](https://discord.gg/Nxj2upuyj8) to get a code.
 ### v1.0.1 — Current Release
 - ✦ FluxKey PLUS system — one-time code activation (`FLUX-XXXX-XXXX-XXXX-XXXX` format), unlocks instantly without restart
 - 📌 Vault group pinning — pin important vaults to the top of the list
-- ↕️ Entry reorder — ▲▼ buttons per entry for full manual ordering
 - 🎮 Vault Rank system — full XP progression from Level 1 to 999 with 15 rank tiers
 - 💜 Animated glowing purple border around the app window
 - 🕐 Recent entries section — top 3 most-recent passwords surfaced automatically
@@ -222,7 +220,7 @@ Join the [Discord](https://discord.gg/Nxj2upuyj8) to get a code.
 - 🐛 Fixed: `QLabel already deleted` RuntimeError during auto-lock
 - 🐛 Fixed: `NameError: name 'b' is not defined` on startup
 
-### v8 and earlier
+### Earlier Releases
 See [Releases](https://github.com/fluxtool/fluxkey/releases) for full history.
 
 <br/>
@@ -270,7 +268,7 @@ Every star genuinely helps. Thank you. 🙏
 
 <div align="center">
 
-**Made with 💜 by .fluxtool**
+**Made With ❤️ By The Fluxtool Community**
 
 *FluxKey — because your passwords belong to you, not to some company's server.*
 
