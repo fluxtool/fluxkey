@@ -1,6 +1,7 @@
 <div align="center">
 
-![Logo](
+<img src="preview/FK_badge.png" alt="Logo" width="200">
+
 # ⚡ FluxKey — Cyber Vault
 
 ### The most beautiful local password manager for Windows.
