@@ -1,7 +1,6 @@
 <div align="center">
 
-<img src="https://https://imgur.com/a/2bhagVR" alt="FluxKey" width="120" height="120"/>
-
+![Logo](
 # ⚡ FluxKey — Cyber Vault
 
 ### The most beautiful local password manager for Windows.
