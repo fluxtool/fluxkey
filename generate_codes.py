@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 # generate_codes.py — FluxKey PLUS code generator
-# Keep this file PRIVATE. Never ship it with your app.
-#
+
 # Usage:
 #   python generate_codes.py            -> 10 codes printed to terminal
 #   python generate_codes.py 50         -> 50 codes
 #   python generate_codes.py 100 out.txt -> saves to file
 #
 # Format: FLUX-XXXX-XXXX-XXXX-XXXX  (one-time use each)
-
 import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
