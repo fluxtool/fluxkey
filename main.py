@@ -3,8 +3,10 @@
 FluxKey - Unified Entry Point and Build System
   python main.py              -> Launch desktop app
   python main.py --build      -> Build Windows EXE + Inno Setup installer
+  python main.py --linux      -> Build Linux binary + .tar.gz package
   python main.py --apk        -> Prepare mobile project + build APK
-  python main.py --build --apk-> Build both
+  python main.py --build --apk-> Build Windows + Android
+  python main.py --linux --apk-> Build Linux + Android
 """
 
 import sys, os, subprocess, shutil, platform
@@ -13,6 +15,7 @@ BASE     = os.path.dirname(os.path.abspath(__file__))
 DIST     = os.path.join(BASE, "dist")
 MOBILE   = os.path.join(BASE, "mobile")
 ICO      = os.path.join(BASE, "fluxkey.ico")
+PNG      = os.path.join(BASE, "fluxkey.png")   # Linux icon (PNG)
 
 APP_NAME      = "FluxKey"
 APP_VERSION   = "BETA 1.0.1"
@@ -22,6 +25,11 @@ EXE_DIR       = os.path.join(DIST, EXE_NAME)
 EXE_PATH      = os.path.join(EXE_DIR, EXE_NAME + ".exe")
 INSTALLER     = os.path.join(DIST, APP_NAME + "_Installer.exe")
 ISS_PATH      = os.path.join(DIST, APP_NAME + "_Setup.iss")
+
+# Linux output paths
+LINUX_DIR     = os.path.join(DIST, EXE_NAME + "_Linux")
+LINUX_BIN     = os.path.join(LINUX_DIR, EXE_NAME)
+LINUX_TAR     = os.path.join(DIST, APP_NAME + "_Linux.tar.gz")
 
 ISCC_CANDIDATES = [
     r"C:\Program Files (x86)\Inno Setup 6\ISCC.exe",
@@ -314,6 +322,11 @@ def load_styles(app):
 
 def get_icon():
     from PySide6.QtGui import QIcon
+    # Prefer PNG on Linux (ICO works too, but PNG is native)
+    if sys.platform != "win32":
+        png = _data_path("fluxkey.png")
+        if os.path.exists(png):
+            return QIcon(png)
     ico = _data_path("fluxkey.ico")
     return QIcon(ico) if os.path.exists(ico) else QIcon()
 
@@ -355,10 +368,224 @@ def launch_app():
     sys.exit(app.exec())
 
 
+# ── LINUX BUILD ───────────────────────────────────────────────────────────
+
+def build_linux():
+    """
+    Build a self-contained Linux binary using PyInstaller.
+
+    Produces:
+      dist/FluxKey_Linux/          - folder with binary + all dependencies
+      dist/FluxKey_Linux.tar.gz    - compressed archive ready to distribute
+
+    Also writes:
+      dist/FluxKey_Linux/FluxKey.desktop  - .desktop launcher for the system
+      dist/install_linux.sh               - one-command installer script
+    """
+    banner("FluxKey - Linux Build", "#")
+
+    if platform.system() == "Windows":
+        print("\n  ERROR: Linux builds must be run on a Linux machine or WSL.")
+        print("  On Windows, open WSL and run:")
+        print("    cd " + BASE.replace("\\", "/"))
+        print("    python main.py --linux")
+        sys.exit(1)
+
+    ensure_pyinstaller()
+
+    # ── Clean previous Linux build ────────────────────────────────────────
+    step("Cleaning previous Linux build")
+    for p in (os.path.join(BASE, "build"), LINUX_DIR, LINUX_TAR):
+        if os.path.isdir(p):    shutil.rmtree(p, ignore_errors=True)
+        elif os.path.isfile(p): os.remove(p)
+    # Remove only the Linux spec, not the Windows one
+    spec = os.path.join(BASE, EXE_NAME + ".spec")
+    if os.path.isfile(spec): os.remove(spec)
+    ok("Clean")
+
+    # ── Resolve icon: prefer PNG, fall back to ICO ────────────────────────
+    step("Resolving icon")
+    icon_arg = None
+    if os.path.exists(PNG):
+        icon_arg = PNG;  ok("Using fluxkey.png")
+    elif os.path.exists(ICO):
+        icon_arg = ICO;  ok("Using fluxkey.ico (PNG preferred on Linux)")
+    else:
+        ok("No icon found — building without one")
+
+    # ── PyInstaller command ───────────────────────────────────────────────
+    banner("Step 1 - Binary", "-")
+    os.makedirs(DIST, exist_ok=True)
+
+    add_data = []
+    for src, dst in [
+        (os.path.join(BASE, "ui", "styles.qss"), "ui"),
+        (ICO, "."),
+        (PNG, "."),
+    ]:
+        if os.path.exists(src):
+            add_data += ["--add-data", src + ":" + dst]
+
+    cmd = [
+        sys.executable, "-m", "PyInstaller",
+        "--noconfirm", "--clean", "--windowed",
+        "--name",      EXE_NAME,
+        "--distpath",  DIST,
+        "--workpath",  os.path.join(BASE, "build"),
+        "--onedir",                          # folder mode — faster startup than onefile
+    ]
+    if icon_arg:
+        cmd += ["--icon", icon_arg]
+    cmd += add_data
+    cmd += [os.path.join(BASE, "main.py")]
+
+    run(cmd)
+
+    if not os.path.exists(LINUX_BIN):
+        fail("Linux binary not found at: " + LINUX_BIN)
+    ok("Binary -> " + LINUX_BIN)
+
+    # ── Write .desktop launcher file ──────────────────────────────────────
+    banner("Step 2 - Desktop launcher", "-")
+    desktop_content = (
+        "[Desktop Entry]\n"
+        "Version=1.0\n"
+        "Type=Application\n"
+        "Name=FluxKey\n"
+        "Comment=FluxKey Cyber Vault — Password Manager\n"
+        "Exec={install_dir}/FluxKey\n"
+        "Icon={install_dir}/fluxkey.png\n"
+        "Terminal=false\n"
+        "Categories=Utility;Security;\n"
+        "Keywords=password;vault;security;encrypt;\n"
+        "StartupNotify=true\n"
+    )
+    desktop_path = os.path.join(LINUX_DIR, "FluxKey.desktop")
+    with open(desktop_path, "w") as f:
+        f.write(desktop_content)
+    ok(".desktop file -> " + desktop_path)
+
+    # ── Write install_linux.sh ────────────────────────────────────────────
+    banner("Step 3 - Installer script", "-")
+    install_sh = os.path.join(DIST, "install_linux.sh")
+    install_content = r"""#!/usr/bin/env bash
+# FluxKey Linux Installer
+# Usage: bash install_linux.sh
+
+set -e
+
+APP_NAME="FluxKey"
+INSTALL_DIR="$HOME/.local/share/FluxKey"
+BIN_LINK="$HOME/.local/bin/FluxKey"
+DESKTOP_DIR="$HOME/.local/share/applications"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SRC_DIR="$SCRIPT_DIR/FluxKey_Linux"
+
+echo ""
+echo "  ============================================"
+echo "   FluxKey Linux Installer"
+echo "  ============================================"
+echo ""
+
+# Check source exists
+if [ ! -d "$SRC_DIR" ]; then
+    echo "  ERROR: FluxKey_Linux/ folder not found next to this script."
+    echo "  Make sure you extracted the archive first."
+    exit 1
+fi
+
+# Create install dir
+mkdir -p "$INSTALL_DIR"
+mkdir -p "$HOME/.local/bin"
+mkdir -p "$DESKTOP_DIR"
+
+# Copy files
+echo "  > Copying files to $INSTALL_DIR ..."
+cp -r "$SRC_DIR/." "$INSTALL_DIR/"
+chmod +x "$INSTALL_DIR/FluxKey"
+
+# Symlink binary so 'FluxKey' works from terminal
+ln -sf "$INSTALL_DIR/FluxKey" "$BIN_LINK"
+echo "  ok: Symlink -> $BIN_LINK"
+
+# Install .desktop file with real paths
+DESKTOP_FILE="$DESKTOP_DIR/FluxKey.desktop"
+sed "s|{install_dir}|$INSTALL_DIR|g" "$INSTALL_DIR/FluxKey.desktop" > "$DESKTOP_FILE"
+chmod +x "$DESKTOP_FILE"
+echo "  ok: Desktop entry -> $DESKTOP_FILE"
+
+# Update desktop database if possible
+if command -v update-desktop-database &>/dev/null; then
+    update-desktop-database "$DESKTOP_DIR" 2>/dev/null || true
+fi
+
+echo ""
+echo "  ============================================"
+echo "   FluxKey installed successfully!"
+echo "  ============================================"
+echo ""
+echo "  Run from terminal:    FluxKey"
+echo "  Or find it in your application menu."
+echo ""
+"""
+    with open(install_sh, "w") as f:
+        f.write(install_content)
+    os.chmod(install_sh, 0o755)
+    ok("Installer -> " + install_sh)
+
+    # ── Write uninstall_linux.sh ──────────────────────────────────────────
+    uninstall_sh = os.path.join(DIST, "uninstall_linux.sh")
+    uninstall_content = r"""#!/usr/bin/env bash
+# FluxKey Linux Uninstaller
+
+echo ""
+echo "  Uninstalling FluxKey..."
+rm -rf "$HOME/.local/share/FluxKey"
+rm -f  "$HOME/.local/bin/FluxKey"
+rm -f  "$HOME/.local/share/applications/FluxKey.desktop"
+if command -v update-desktop-database &>/dev/null; then
+    update-desktop-database "$HOME/.local/share/applications" 2>/dev/null || true
+fi
+echo "  FluxKey removed. Your vault data in ~/.fluxkey is kept."
+echo "  To remove vault data too: rm -rf ~/.fluxkey"
+echo ""
+"""
+    with open(uninstall_sh, "w") as f:
+        f.write(uninstall_content)
+    os.chmod(uninstall_sh, 0o755)
+    ok("Uninstaller -> " + uninstall_sh)
+
+    # ── Package into tar.gz ───────────────────────────────────────────────
+    banner("Step 4 - Packaging tar.gz", "-")
+    step("Creating " + LINUX_TAR)
+    import tarfile
+    with tarfile.open(LINUX_TAR, "w:gz") as tar:
+        # Add the binary folder
+        tar.add(LINUX_DIR, arcname=EXE_NAME + "_Linux")
+        # Add the shell scripts at the root of the archive
+        tar.add(install_sh,   arcname="install_linux.sh")
+        tar.add(uninstall_sh, arcname="uninstall_linux.sh")
+    ok("Archive -> " + LINUX_TAR)
+
+    # ── Summary ───────────────────────────────────────────────────────────
+    banner("Linux Build Complete", "-")
+    print("  Binary folder: ", LINUX_DIR)
+    print("  Archive:       ", LINUX_TAR)
+    print("  Installer:     ", install_sh)
+    print()
+    print("  Distribute the .tar.gz. Users extract and run:")
+    print("    tar -xzf FluxKey_Linux.tar.gz")
+    print("    bash install_linux.sh")
+    print()
+    print("  Or run directly without installing:")
+    print("    ./FluxKey_Linux/FluxKey")
+
+
 # ── ENTRY POINT ───────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     do_build = "--build" in sys.argv
+    do_linux = "--linux" in sys.argv
     do_apk   = "--apk"   in sys.argv
 
     if do_build and do_apk:
@@ -366,8 +593,20 @@ if __name__ == "__main__":
         build_apk()
         banner("All Builds Complete", "#")
         sys.exit(0)
+    elif do_build and do_linux:
+        build_windows()
+        build_linux()
+        banner("All Builds Complete", "#")
+        sys.exit(0)
     elif do_build:
         build_windows(); sys.exit(0)
+    elif do_linux and do_apk:
+        build_linux()
+        build_apk()
+        banner("All Builds Complete", "#")
+        sys.exit(0)
+    elif do_linux:
+        build_linux(); sys.exit(0)
     elif do_apk:
         build_apk(); sys.exit(0)
     else:
